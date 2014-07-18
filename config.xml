@@ -7,7 +7,7 @@
     <name>Driving Success</name>
 
     <description>
-        Hello World sample application that responds to the deviceready event.
+        Sales team app for Landrover and Jaguar Southern Africa  
     </description>
 
     <author href="http://www.myitmanager.co.za" email="support@myitmanager.co.za">
@@ -78,6 +78,7 @@
     <icon src="res/icon/ios/icon-72-2x.png"         gap:platform="ios"        width="144" height="144" />
 
     <!-- Define app splash screen for each platform. -->
+    <gap:splash src="splash.png" />
     <gap:splash src="res/screen/android/screen-ldpi-portrait.png"       gap:platform="android" gap:qualifier="port-ldpi" />
     <gap:splash src="res/screen/android/screen-mdpi-portrait.png"       gap:platform="android" gap:qualifier="port-mdpi" />
     <gap:splash src="res/screen/android/screen-hdpi-portrait.png"       gap:platform="android" gap:qualifier="port-hdpi" />
