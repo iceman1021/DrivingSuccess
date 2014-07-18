@@ -1,0 +1,103 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 15, 2014, 4:07:23 PM
+    Author     : Llewellyn
+*/
+
+#content, #header, #footer {
+    max-width: 720px;
+    background-color: #fff;
+    margin: 0 auto;
+}
+
+#content {
+    padding: 0;
+}
+
+#header, #footer {
+    border: none;
+}
+
+#content-body-main {
+    background: #fff url('../images/background.png') 50% 50% no-repeat;
+    background-size: cover;
+    padding: 30px;
+}
+
+#content-title {
+    border-top: 1px solid #d32627;
+    border-bottom: 1px solid #d32627;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 10px 0;
+}
+
+#content-title > h2 {
+    color: #d32627;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.resposive {
+    width: 100%;
+}
+
+.form-input {
+    border: 1px solid #d32627;
+    border-radius: 0;
+    box-shadow: none;
+    width: 100%;
+    display: block;
+    line-height: 40px;
+    margin: 10px 0;
+    height: 40px;
+}
+
+.my-but {
+    background-color: #d32627;
+    color: #fff;
+    border: none;
+    width: 100%;
+    display: block;
+    height: 55px;
+    line-height: 55px;
+    font-weight: bold;
+    margin: 10px 0;
+    cursor:pointer;
+}
+
+.my-link {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    text-shadow: none;
+    font-size: 10px;
+}
+
+.fileinput-button {
+    position: relative;
+    overflow: hidden;
+    float: left;
+    margin-right: 4px;
+    width: 95%;
+}
+.fileinput-button input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    transform: translate(-300px, 0) scale(4);
+    font-size: 23px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.navImg {
+    border: 1px solid #d32627;
+}
