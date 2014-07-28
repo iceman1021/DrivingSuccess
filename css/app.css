@@ -8,10 +8,15 @@ and open the template in the editor.
     Author     : Llewellyn
 */
 
-#content, #header, #footer {
+#header, #footer {
     max-width: 720px;
     background-color: #fff;
     margin: 0 auto;
+}
+
+.ui-page {
+    background: #fff url('../images/background.png') 50% 50% no-repeat;
+    background-size: cover;
 }
 
 #content {
@@ -23,8 +28,6 @@ and open the template in the editor.
 }
 
 #content-body-main {
-    background: #fff url('../images/background.png') 50% 50% no-repeat;
-    background-size: cover;
     padding: 30px;
 }
 
@@ -34,9 +37,16 @@ and open the template in the editor.
     text-align: center;
     text-transform: uppercase;
     padding: 10px 0;
+    background-color: #fff;
 }
 
 #content-title > h2 {
+    color: #d32627;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+#content-head > h2 {
     color: #d32627;
     font-weight: normal;
     font-size: 18px;
@@ -68,6 +78,17 @@ and open the template in the editor.
     font-weight: bold;
     margin: 10px 0;
     cursor:pointer;
+}
+
+.my-log {
+    background-color: #fff;
+    color: #ccc;
+    border: 1px solid #ccc;
+    height: 55px;
+    line-height: 55px;
+    font-weight: normal;
+    padding: 5px;
+    cursor: pointer;
 }
 
 .my-link {
