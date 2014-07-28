@@ -25,7 +25,7 @@ function onError(error) {
 
 $(document).on("pageshow", "#dashboard", function(){ 
     
-    var DocH = $( window ).outerHeight( true );
+    var DocH = $( document ).outerHeight( true );
     var headerH = $( "#header" ).outerHeight( true );
     var titelH = $( "#content-title" ).outerHeight( true );
     var footerH = $( "#footer" ).outerHeight( true );
@@ -44,7 +44,7 @@ $(document).on("pageshow", "#dashboard", function(){
 
 $(document).on("pageshow", "#login", function(){ 
     
-    var DocH = $( window ).outerHeight( true );
+    var DocH = $( document ).outerHeight( true );
     var headerH = $( "#header" ).outerHeight( true );
     var titelH = $( "#content-title" ).outerHeight( true );
     var footerH = $( "#footer" ).outerHeight( true );
@@ -99,7 +99,7 @@ $(document).on("pageshow", "#login", function(){
 
 $(document).on("pageshow", "#forgot", function(){ 
     
-    var DocH = $( window ).outerHeight( true );
+    var DocH = $( document ).outerHeight( true );
     var headerH = $( "#header" ).outerHeight( true );
     var titelH = $( "#content-title" ).outerHeight( true );
     var footerH = $( "#footer" ).outerHeight( true );
@@ -144,7 +144,7 @@ $(document).on("pageshow", "#forgot", function(){
 
 $(document).on("pageshow", "#signup", function(){ 
     
-    var DocH = $( window ).outerHeight( true );
+    var DocH = $( document ).outerHeight( true );
     var headerH = $( "#header" ).outerHeight( true );
     var titelH = $( "#content-title" ).outerHeight( true );
     var footerH = $( "#footer" ).outerHeight( true );
