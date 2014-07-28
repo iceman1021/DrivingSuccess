@@ -24,6 +24,15 @@ function onError(error) {
 }
 
 $(document).on("pageshow", "#dashboard", function(){ 
+    
+    var DocH = $( window ).outerHeight( true );
+    var headerH = $( "#header" ).outerHeight( true );
+    var titelH = $( "#content-title" ).outerHeight( true );
+    var footerH = $( "#footer" ).outerHeight( true );
+    
+    var contentH = DocH - headerH - titelH - footerH - 60;
+    $("#content-body-main").height(contentH);
+    
     loginName = localStorage.getItem('log_name');
     loginSurname = localStorage.getItem('log_surname');
     loginUID = localStorage.getItem('log_uid');
@@ -34,6 +43,15 @@ $(document).on("pageshow", "#dashboard", function(){
 });
 
 $(document).on("pageshow", "#login", function(){ 
+    
+    var DocH = $( window ).outerHeight( true );
+    var headerH = $( "#header" ).outerHeight( true );
+    var titelH = $( "#content-title" ).outerHeight( true );
+    var footerH = $( "#footer" ).outerHeight( true );
+    
+    var contentH = DocH - headerH - titelH - footerH - 60;
+    $("#content-body-main").height(contentH);
+    
     $('#loginForm').submit(function(e)
     {
         console.log($(this).serialize());
@@ -80,6 +98,15 @@ $(document).on("pageshow", "#login", function(){
 });
 
 $(document).on("pageshow", "#forgot", function(){ 
+    
+    var DocH = $( window ).outerHeight( true );
+    var headerH = $( "#header" ).outerHeight( true );
+    var titelH = $( "#content-title" ).outerHeight( true );
+    var footerH = $( "#footer" ).outerHeight( true );
+    
+    var contentH = DocH - headerH - titelH - footerH - 60;
+    $("#content-body-main").height(contentH);
+    
     $('#forgotForm').submit(function(e)
     {
         console.log($(this).serialize());
@@ -116,6 +143,15 @@ $(document).on("pageshow", "#forgot", function(){
 });
 
 $(document).on("pageshow", "#signup", function(){ 
+    
+    var DocH = $( window ).outerHeight( true );
+    var headerH = $( "#header" ).outerHeight( true );
+    var titelH = $( "#content-title" ).outerHeight( true );
+    var footerH = $( "#footer" ).outerHeight( true );
+    
+    var contentH = DocH - headerH - titelH - footerH - 60;
+    $("#content-body-main").height(contentH);
+    
     $('#signupForm').submit(function(e)
     {
         console.log($(this).serialize());
