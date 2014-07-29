@@ -8,15 +8,19 @@ and open the template in the editor.
     Author     : Llewellyn
 */
 
-#header, #footer {
-    max-width: 720px;
-    background-color: #fff;
-    margin: 0 auto;
-}
-
-.ui-page {
+#forgot, #login, #signup, #dashboard, #logout {
     background: #fff url('../images/background.png') 50% 50% no-repeat;
     background-size: cover;
+}
+
+#rewards, #whatsnew, #ranking {
+    background: #fff url('../images/Dashboard-Background.png') 100% 100% no-repeat;
+    background-size: cover;
+}
+
+#content, #header, #footer {
+    max-width: 768px;
+    margin: 0 auto;
 }
 
 #content {
@@ -25,6 +29,7 @@ and open the template in the editor.
 
 #header, #footer {
     border: none;
+    background-color: #fff;
 }
 
 #content-body-main {
