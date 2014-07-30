@@ -8,6 +8,26 @@ and open the template in the editor.
     Author     : Llewellyn
 */
 
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+
+body, input, select, textarea, button, .ui-btn {
+    font-family: 'Droid Sans', sans-serif;
+}
+
+.ui-body-a,
+.ui-body-a input,
+.ui-body-a select,
+.ui-body-a textarea,
+.ui-body-a button {
+    font-family: 'Droid Sans', sans-serif;
+}
+
+.ui-btn-up-a,
+.ui-btn-hover-a,
+.ui-btn-down-a {
+    font-family: 'Droid Sans', sans-serif;
+}
+
 #forgot, #login, #signup, #dashboard, #logout {
     background: #fff url('../images/background.png') 50% 50% no-repeat;
     background-size: cover;
