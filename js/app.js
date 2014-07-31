@@ -78,7 +78,6 @@ function loadRankings(uid) {
             
             $('#rankingsOutput').empty();
             $('#rankingsOutput').append(rankings); 
-            $('#rankingsOutput').listview('refresh');
         },
         error      : function() {
             console.error("error");
@@ -99,23 +98,8 @@ function loadNews() {
         data       : "tipe=getNews",
         dataType   : 'json',
         success    : function(response) {
-            for (var i in response) {
-                var newsOut = '<div data-role="collapsible" data-enhanced="true" class="ui-collapsible ui-collapsible-themed-content ui-collapsible-collapsed ui-first-child ui-last-child">'
-                                +'<div class="ui-collapsible-heading ui-collapsible-heading-collapsed">'
-                                    +'<a href="#" class="ui-collapsible-heading-toggle ui-btn ui-btn-a" style="background-color: transparent; border:none">'
-                                        +'<div class="ui-grid-a">'
-                                            +'<div class="ui-block-a" style="width:25%"><div style="height:60px; height:60px: overflow:hidden;"><img src="http://myitmanager.co.za/dsCMS/images/campaigns/'+response[i]['campaign_img']+'" style="height: 100%"></div></div>'
-                                            +'<div class="ui-block-b" style="width:75%"><div style="height:60px; line-height: 60px; text-transform: uppercase;">'+response[i]['campaign_name']+' - '+response[i]['campaign_date']+'</div></div>'
-                                        +'</div>'
-                                        +'<span class="ui-collapsible-heading-status"> click to expand contents</span>'
-                                    +'</a>'
-                                +'</div>'
-                                +'<div class="ui-collapsible-content ui-body-inherit ui-collapsible-content-collapsed" aria-hidden="true" style="background-color: transparent; border-color: #D32424">'
-                                    +'<p style="color:D32424">'+response[i]['campaign_content']+'</p>'
-                                +'</div>'
-                            +'</div>';
-                $('#newsOutput').append(newsOut); 
-            }
+            var newsOut = response["news"];
+            $('#newsOutput').append(newsOut); 
             $("#newsOutput").collapsibleset().trigger('create');
         },
         error      : function() {

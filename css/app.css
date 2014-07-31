@@ -8,24 +8,29 @@ and open the template in the editor.
     Author     : Llewellyn
 */
 
-@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+@import url(http://fonts.googleapis.com/css?family=Michroma);
 
-body, input, select, textarea, button, .ui-btn {
-    font-family: 'Droid Sans', sans-serif;
+body, button, .ui-btn {
+    font-family: 'Michroma', Arial, Helvetica, sans-serif;
+    font-size: 12px;
 }
 
-.ui-body-a,
-.ui-body-a input,
-.ui-body-a select,
-.ui-body-a textarea,
-.ui-body-a button {
-    font-family: 'Droid Sans', sans-serif;
+input, select, textarea {
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.ui-btn-up-a,
-.ui-btn-hover-a,
-.ui-btn-down-a {
-    font-family: 'Droid Sans', sans-serif;
+.ui-body-a, .ui-body-a button {
+    font-family: 'Michroma', Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.ui-body-a input, .ui-body-a select, .ui-body-a textarea {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.ui-btn-up-a, .ui-btn-hover-a, .ui-btn-down-a {
+    font-family: 'Michroma', Arial, Helvetica, sans-serif;
+    font-size: 12px;
 }
 
 #forgot, #login, #signup, #dashboard, #logout {
@@ -47,9 +52,14 @@ body, input, select, textarea, button, .ui-btn {
     padding: 0;
 }
 
-#header, #footer {
+#header {
     border: none;
     background-color: #fff;
+}
+
+#footer {
+    background-color: #fff;
+    border-top: 1px solid #d32627;
 }
 
 #content-body-main {
@@ -67,14 +77,33 @@ body, input, select, textarea, button, .ui-btn {
 
 #content-title > h2 {
     color: #d32627;
-    font-weight: normal;
-    font-size: 18px;
+    font-weight: bold;
+    font-size: 14px;
 }
 
 #content-head > h2 {
     color: #d32627;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: left;
+    padding-left: 30px;
+}
+
+#rankingsOutput {
+    border-collapse: collapse;
+    font-size: 10px;
+}
+
+#logoutDiv {
+    text-align: right;
+    padding-right: 30px;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 12px;
+    text-transform: none;
+}
+
+#logoutA {
+    text-align: center; text-decoration: none; color: #333; text-shadow: none; font-family: Arial, Helvetica, sans-serif;
 }
 
 .resposive {
@@ -92,7 +121,7 @@ body, input, select, textarea, button, .ui-btn {
     height: 40px;
 }
 
-.my-but {
+#my-but {
     background-color: #d32627;
     color: #fff;
     border: none;
@@ -103,25 +132,30 @@ body, input, select, textarea, button, .ui-btn {
     font-weight: bold;
     margin: 10px 0;
     cursor:pointer;
+    font-family: 'Michroma', Arial, Helvetica, sans-serif;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .my-log {
     background-color: #fff;
     color: #ccc;
     border: 1px solid #ccc;
-    height: 55px;
-    line-height: 55px;
+    height: 40px;
+    line-height: 40px;
     font-weight: normal;
     padding: 5px;
     cursor: pointer;
 }
 
-.my-link {
+#my-link {
     color: black;
     text-decoration: none;
     font-weight: bold;
     text-shadow: none;
     font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .fileinput-button {
@@ -146,4 +180,30 @@ body, input, select, textarea, button, .ui-btn {
 
 .navImg {
     border: 1px solid #d32627;
+}
+
+#newsCollaps {
+    background-color: transparent; 
+    border:none;
+}
+
+#newsImg {
+    height:60px; 
+    height:60px; 
+    overflow:hidden;
+}
+
+#newsTitle {
+    height:60px; 
+    line-height: 60px; 
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: normal;
+    text-shadow: none;
+}
+
+#newsContent {
+    background-color: transparent;
+    border-color: #D32424;
+    color: #d32424;
 }
