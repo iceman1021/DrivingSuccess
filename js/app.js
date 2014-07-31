@@ -132,15 +132,10 @@ $(document).on("pageshow", "#whatsnew", function(){
 });
 
 $(document).on("pageshow", "#logout", function(){
-    localStorage.log_name = '';
-    localStorage.log_surname = '';
-    localStorage.log_uid = '';
-    localStorage.log_remeber = '';
-    localStorage.log_email = '';
+    localStorage.clear();
     
-    $('#loginForm').submit(function(e)
-    {
-        console.log($(this).serialize());
+    $('#loginbut').click(function() {
+        console.log($('#loginForm').serialize());
         loading = true;
         $.ajax({
             type       : "POST",
@@ -148,10 +143,10 @@ $(document).on("pageshow", "#logout", function(){
             crossDomain: true,
             beforeSend : function() {$.mobile.loading('show')},
             complete   : function() {$.mobile.loading('hide')},
-            data       : "tipe=login&"+$(this).serialize(),
+            data       : "tipe=login&"+$('#loginForm').serialize(),
             dataType   : 'json',
             success    : function(response) {
-                
+
                 var resultHtml = response["html"];
                 var resultError = response["error"];
                 loginName = response['name'];
@@ -159,7 +154,7 @@ $(document).on("pageshow", "#logout", function(){
                 loginUID = response['user_id'];
                 loginRemember = response['remember'];
                 loginEmail = response['email'];
-                
+
                 if (resultError == '1') {
                     $('#loginError').empty();
                     $('#loginError').append(resultHtml);  
@@ -179,15 +174,13 @@ $(document).on("pageshow", "#logout", function(){
                 alert('Unable to connect to server, please try again...');                  
             }
         });
-        e.preventDefault();
+        event.preventDefault();
     });
 });
 
 $(document).on("pageshow", "#login", function(){ 
-    
-    $('#loginForm').submit(function(e)
-    {
-        console.log($(this).serialize());
+    $('#loginbut').click(function() {
+        console.log($('#loginForm').serialize());
         loading = true;
         $.ajax({
             type       : "POST",
@@ -195,10 +188,10 @@ $(document).on("pageshow", "#login", function(){
             crossDomain: true,
             beforeSend : function() {$.mobile.loading('show')},
             complete   : function() {$.mobile.loading('hide')},
-            data       : "tipe=login&"+$(this).serialize(),
+            data       : "tipe=login&"+$('#loginForm').serialize(),
             dataType   : 'json',
             success    : function(response) {
-                
+
                 var resultHtml = response["html"];
                 var resultError = response["error"];
                 loginName = response['name'];
@@ -206,7 +199,7 @@ $(document).on("pageshow", "#login", function(){
                 loginUID = response['user_id'];
                 loginRemember = response['remember'];
                 loginEmail = response['email'];
-                
+
                 if (resultError == '1') {
                     $('#loginError').empty();
                     $('#loginError').append(resultHtml);  
@@ -226,15 +219,14 @@ $(document).on("pageshow", "#login", function(){
                 alert('Unable to connect to server, please try again...');                  
             }
         });
-        e.preventDefault();
+        event.preventDefault();
     });
 });
 
 $(document).on("pageshow", "#forgot", function(){ 
     
-    $('#forgotForm').submit(function(e)
+    $('#forgotbut').click(function()
     {
-        console.log($(this).serialize());
         loading = true;
         $.ajax({
             type       : "POST",
@@ -242,7 +234,7 @@ $(document).on("pageshow", "#forgot", function(){
             crossDomain: true,
             beforeSend : function() {$.mobile.loading('show')},
             complete   : function() {$.mobile.loading('hide')},
-            data       : "tipe=forgot&"+$(this).serialize(),
+            data       : "tipe=forgot&"+$('#forgotForm').serialize(),
             dataType   : 'json',
             success    : function(response) {
                 
@@ -263,15 +255,14 @@ $(document).on("pageshow", "#forgot", function(){
                 alert('Unable to connect to server, please try again...');                  
             }
         });
-        e.preventDefault();
+        event.preventDefault();
     });
 });
 
 $(document).on("pageshow", "#signup", function(){ 
     
-    $('#signupForm').submit(function(e)
+    $('#signupbut').click(function()
     {
-        console.log($(this).serialize());
         loading = true;
         
         $.ajax({
@@ -280,7 +271,7 @@ $(document).on("pageshow", "#signup", function(){
             crossDomain: true,
             beforeSend : function() {$.mobile.loading('show')},
             complete   : function() {$.mobile.loading('hide')},
-            data       : "tipe=signup&"+$(this).serialize(),
+            data       : "tipe=signup&"+$('#signupForm').serialize(),
             dataType   : 'json',
             success    : function(response) {
                 
@@ -301,6 +292,6 @@ $(document).on("pageshow", "#signup", function(){
                 alert('Unable to connect to server, please try again...');                  
             }
         });
-        e.preventDefault();
+        event.preventDefault();
     });
 });

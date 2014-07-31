@@ -43,7 +43,7 @@ input, select, textarea {
     background-size: cover;
 }
 
-#content, #header, #footer {
+#content, #header, #footer, #footer-none {
     max-width: 768px;
     margin: 0 auto;
 }
@@ -55,6 +55,11 @@ input, select, textarea {
 #header {
     border: none;
     background-color: #fff;
+}
+
+#footer-none {
+    border: none;
+    background-color: transparent;
 }
 
 #footer {
@@ -121,7 +126,7 @@ input, select, textarea {
     height: 40px;
 }
 
-#my-but {
+#my-but, #loginbut, #signupbut, #forgotbut {
     background-color: #d32627;
     color: #fff;
     border: none;
@@ -188,7 +193,7 @@ input, select, textarea {
 }
 
 #newsImg {
-    height:60px; 
+    width:60px; 
     height:60px; 
     overflow:hidden;
 }
