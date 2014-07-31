@@ -8,17 +8,14 @@
         </div><!-- /header -->
         <div role="main" class="ui-content" id="content">
             <div id="content-title">
-                <h2>Logged out</h2>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a" id="content-head" style="width:65%"><h2>Logged out</h2></div>
+                    <div class="ui-block-b" id="logoutDiv" style="width:35%"><a href="index.html" class="my-log" id="logoutA" data-role="none">Home</a></div>
+                </div>
             </div>
             <div id="content-body-main">
                 <img src="images/sponserBanner.png" class="resposive">
                 <p>You have been successfully logged out.</p>
-                <form method="POST" action="" id="loginForm">
-                    <input type="text" name="username" class="form-input" id="username" placeholder=" USERNAME" value="" data-role="none">
-                    <input type="password" name="password" class="form-input" id="password" placeholder=" PASSWORD" value="" data-role="none">
-                    <a href="#" id="loginbut" data-role="none">LOG IN</a>
-                </form>
-                <div data-role="popup" id="loginError" data-theme="a" data-overlay-theme="a" class="ui-content"></div>
             </div>
         </div><!-- /content -->
         <div data-role="footer" id="footer-none" data-position="fixed">

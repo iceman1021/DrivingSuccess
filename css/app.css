@@ -17,6 +17,7 @@ body, button, .ui-btn {
 
 input, select, textarea {
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
 }
 
 .ui-body-a, .ui-body-a button {
@@ -26,11 +27,12 @@ input, select, textarea {
 
 .ui-body-a input, .ui-body-a select, .ui-body-a textarea {
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
 }
 
 .ui-btn-up-a, .ui-btn-hover-a, .ui-btn-down-a {
     font-family: 'Michroma', Arial, Helvetica, sans-serif;
-    font-size: 12px;
+    font-size: 16px;
 }
 
 #forgot, #login, #signup, #dashboard, #logout {
@@ -196,6 +198,7 @@ input, select, textarea {
     width:60px; 
     height:60px; 
     overflow:hidden;
+    border: 2px solid #424143;
 }
 
 #newsTitle {
