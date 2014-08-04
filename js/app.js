@@ -2,7 +2,7 @@ $.support.cors = true;
 $.mobile.allowCrossDomainPages = true;
 
 var formurl = "http://www.myitmanager.co.za/dsCMS/mobile/submitions_api.php";
-var placeSearch, autocomplete, devicePlatform, loginName, loginSurname, loginUID, loginRemember, loginEmail;
+var placeSearch, autocomplete, devicePlatform, loginName, loginSurname, loginUID, loginRemember, loginEmail, files;
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -33,6 +33,11 @@ function loadURL(url){
         window.open(url, '_system', 'location=no');
         return false;
     }
+}
+
+function prepareUpload(event)
+{
+    files = event.target.files;
 }
 
 // Load user points and gauge //
@@ -261,18 +266,38 @@ $(document).on("pageshow", "#forgot", function(){
 
 $(document).on("pageshow", "#signup", function(){ 
     
+    $('input[type=file]').on('change', prepareUpload);
+    
     $('#signupbut').click(function()
     {
         loading = true;
         
+        event.preventDefault();
+        var formData = new FormData();
+        $.each(files, function(key, value)
+	{
+            formData.append(key, value);
+	});
+        formData.append('user_name', $('#user_name').val());
+        formData.append('user_surname', $('#user_surname').val());
+        formData.append('user_email', $('#user_email').val());
+        formData.append('user_reemail', $('#user_reemail').val());
+        formData.append('user_password', $('#user_password').val());
+        formData.append('user_repassword', $('#user_repassword').val());
+        formData.append('user_number', $('#user_number').val());
+        formData.append('user_country', $('#user_country').val());
+        formData.append('tipe', 'signup');
+        
         $.ajax({
-            type       : "POST",
+            type: "POST",
             url        : formurl,
             crossDomain: true,
             beforeSend : function() {$.mobile.loading('show')},
             complete   : function() {$.mobile.loading('hide')},
-            data       : "tipe=signup&"+$('#signupForm').serialize(),
-            dataType   : 'json',
+            dataType: 'json',
+            processData: false,
+            contentType: false,
+            data: formData,
             success    : function(response) {
                 
                 var resultHtml = response["html"];
@@ -287,11 +312,12 @@ $(document).on("pageshow", "#signup", function(){
                     $('#signupSuccess').append(resultHtml);
                 }
             },
-            error      : function() {
-                console.error("error");
+            error      : function(xhr, textStatus, error){
+                console.log(xhr.statusText);
+                console.log(textStatus);
+                console.log(error);
                 alert('Unable to connect to server, please try again...');                  
             }
         });
-        event.preventDefault();
     });
 });
