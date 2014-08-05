@@ -79,9 +79,8 @@
                         <option value="Zambia">Zambia</option>
                         <option value="Zimbabwe">Zimbabwe</option>
                     </select>
-                    <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
-                    <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);" id="signupbut" data-role="none">Select Photo</button>
-                    <a href="#" id="signupbut" data-role="none" onclick="uploadPhoto();">LET'S GO</a>
+                    <input type="file" accept="image/*" capture="camera" id="getPicture">
+                    <a href="#" id="signupbut" data-role="none">LET'S GO</a>
                 </form>
                 <div id="signupSuccess"></div>
                 <div data-role="popup" id="signupError" data-theme="a" data-overlay-theme="a" class="ui-content"></div>
