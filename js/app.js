@@ -2,7 +2,7 @@ $.support.cors = true;
 $.mobile.allowCrossDomainPages = true;
 
 var formurl = "http://www.myitmanager.co.za/dsCMS/mobile/submitions_api.php";
-var placeSearch, autocomplete, devicePlatform, loginName, loginSurname, loginUID, loginRemember, loginEmail, files;
+var placeSearch, autocomplete, devicePlatform, loginName, loginSurname, loginUID, loginRemember, loginEmail, files, pictureSource, destinationType;
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -16,6 +16,8 @@ function onDeviceReady() {
     });
     
     devicePlatform = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
+    pictureSource = navigator.camera.PictureSourceType;
+    destinationType = navigator.camera.DestinationType;
 }
 
 function onError(error) {
@@ -38,6 +40,69 @@ function loadURL(url){
 function prepareUpload(event)
 {
     files = event.target.files;
+}
+
+function onPhotoURISuccess(imageURI) {
+
+    // Show the selected image
+    var smallImage = document.getElementById('smallImage');
+    smallImage.style.display = 'block';
+    smallImage.src = imageURI;
+}
+
+function getPhoto(source) {
+    // Retrieve image file location from specified source
+    navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,destinationType: destinationType.FILE_URI,sourceType: source });
+}
+
+function uploadPhoto() {
+
+    //selected photo URI is in the src attribute (we set this on getPhoto)
+    var imageURI = document.getElementById('smallImage').getAttribute("src");
+    if (!imageURI) {
+        alert('Please select an image first.');
+        return;
+    }
+
+    //set upload options
+    var options = new FileUploadOptions();
+    options.fileKey = "file";
+    options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
+    options.mimeType = "image/jpeg";
+
+    options.params = {
+        user_name: $('#user_name').val(),
+        user_surname: $('#user_surname').val(),
+        user_email: $('#user_email').val(),
+        user_reemail: $('#user_reemail').val(),
+        user_password: $('#user_password').val(),
+        user_repassword: $('#user_repassword').val(),
+        user_number: $('#user_number').val(),
+        user_country: $('#user_country').val(),
+        tipe: 'signup'
+    }
+
+    var ft = new FileTransfer();
+    ft.upload(imageURI, encodeURI(formurl), win, fail, options);
+}
+
+// Called if something bad happens.
+//
+function onFail(message) {
+    console.log('Failed because: ' + message);
+}
+
+function win(r) {
+    console.log("Code = " + r.responseCode);
+    console.log("Response = " + r.response);
+    //alert("Response =" + r.response);
+    console.log("Sent = " + r.bytesSent);
+}
+
+function fail(error) {
+    alert("An error has occurred: Code = " + error.code);
+    console.log("upload error source " + error.source);
+    console.log("upload error target " + error.target);
 }
 
 // Load user points and gauge //
@@ -265,7 +330,7 @@ $(document).on("pageshow", "#forgot", function(){
 });
 
 $(document).on("pageshow", "#signup", function(){ 
-    
+    /*
     $('input[type=file]').on('change', prepareUpload);
     
     $('#signupbut').click(function()
@@ -320,4 +385,5 @@ $(document).on("pageshow", "#signup", function(){
             }
         });
     });
+    */
 });
