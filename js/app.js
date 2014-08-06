@@ -280,10 +280,12 @@ $(document).on("pageshow", "#signup", function(){
         
         event.preventDefault();
         var formData = new FormData();
-        $.each(files, function(key, value)
-	{
-            formData.append(key, value);
-	});
+        if (typeof files === 'object') {
+            $.each(files, function(key, value)
+            {
+                formData.append(key, value);
+            });
+        }
         formData.append('user_name', $('#user_name').val());
         formData.append('user_surname', $('#user_surname').val());
         formData.append('user_email', $('#user_email').val());
