@@ -16,9 +16,13 @@ function onDeviceReady() {
     });
     
     devicePlatform = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
-    
-    deviceOSVersion = device.version;
 }
+
+function getAndroidVersion(ua) {
+    var ua = ua || navigator.userAgent; 
+    var match = ua.match(/Android\s([0-9\.]*)/i);
+    return match ? match[1] : false;
+};
 
 function onError(error) {
     alert('code: '    + error.code    + '\n' +
@@ -71,14 +75,14 @@ function loadPoints(uid) {
     });
 }
 
-function loadRankings(uid) {
+function loadRankings(uid,div) {
     $.ajax({
         type       : "POST",
         url        : formurl,
         crossDomain: true,
         beforeSend : function() {$.mobile.loading('show')},
         complete   : function() {$.mobile.loading('hide')},
-        data       : "tipe=getRankings&uid="+uid,
+        data       : "tipe=getRankings&uid="+uid+"&div="+div,
         dataType   : 'json',
         success    : function(response) {
             var rankings = response["rankings"];
@@ -93,7 +97,7 @@ function loadRankings(uid) {
     });
 }
 
-function loadNews() {
+function loadNews(div) {
     $('#newsOutput').empty();
     
     $.ajax({
@@ -102,12 +106,42 @@ function loadNews() {
         crossDomain: true,
         beforeSend : function() {$.mobile.loading('show')},
         complete   : function() {$.mobile.loading('hide')},
-        data       : "tipe=getNews",
+        data       : "tipe=getNews&div="+div,
         dataType   : 'json',
         success    : function(response) {
             var newsOut = response["news"];
             $('#newsOutput').append(newsOut); 
             $("#newsOutput").collapsibleset().trigger('create');
+        },
+        error      : function() {
+            console.error("error");
+            alert('Unable to connect to server, please try again...');                  
+        }
+    });
+}
+
+function ChangeToProfile(url){
+    $.mobile.changePage(url, {dataUrl: url, transition: "slide"});
+}
+
+function loadProfile(id) {
+    $.ajax({
+        type       : "POST",
+        url        : formurl,
+        crossDomain: true,
+        beforeSend : function() {$.mobile.loading('show')},
+        complete   : function() {$.mobile.loading('hide')},
+        data       : "tipe=getProfile&uid="+id,
+        dataType   : 'json',
+        success    : function(response) {
+            var profile = response["profile"];
+            var previous = response["previous"];
+            var next = response["next"];
+            
+            $('#profileOutput').empty();
+            $('#profileOutput').append(profile); 
+            $('#pre-but').attr("href", previous);
+            $('#next-but').attr("href", next);
         },
         error      : function() {
             console.error("error");
@@ -130,12 +164,79 @@ $(document).on("pageshow", "#rewards", function(){
     loadPoints(localStorage.getItem('log_uid'));
 });
 
-$(document).on("pageshow", "#ranking", function(){ 
-    loadRankings(localStorage.getItem('log_uid'));
+$(document).on("pageshow", "#jag-ranking", function(){     
+    loadRankings(localStorage.getItem('log_uid'), 1);
+});
+
+$(document).on("pageshow", "#land-ranking", function(){ 
+    loadRankings(localStorage.getItem('log_uid'), 2);
+});
+
+$(document).on("pageshow", "#profile", function(){ 
+    
+    if (!$(this).data("url"))
+    {
+        var query = window.location.search;
+        query = query.replace("?proId=","");
+    }
+    else 
+    {
+        var query = $(this).data("url").split("?")[1];
+        query = query.replace("proId=","");
+    }
+    
+    loadProfile(query);
 });
 
 $(document).on("pageshow", "#whatsnew", function(){ 
-    loadNews();
+    loadNews(1);
+});
+
+$(document).on("pageshow", "#campaigns", function(){ 
+    loadNews(2);
+});
+
+$(document).on("pageshow", "#article", function() {
+    
+    if (!$(this).data("url"))
+    {
+        var query = window.location.search;
+        query = query.replace("?cid=","");
+    }
+    else 
+    {
+        var query = $(this).data("url").split("?")[1];
+        query = query.replace("cid=","");
+    }
+    
+    $('#articleOutput').empty();
+    
+    $.ajax({
+        type       : "POST",
+        url        : formurl,
+        crossDomain: true,
+        beforeSend : function() {$.mobile.loading('show')},
+        complete   : function() {$.mobile.loading('hide')},
+        data       : "tipe=displayNews&cid="+query,
+        dataType   : 'json',
+        success    : function(response) {
+            var articleOut = response["article"];
+            var previous = response["previous"];
+            var next = response["next"];
+            var campBut = response["campBut"];
+            var newsBut = response["newsBut"];
+            
+            $('#articleOutput').append(articleOut); 
+            $('#pre-but').attr("href", previous);
+            $('#next-but').attr("href", next);
+            $('#jag-but').attr("id", campBut);
+            $('#land-but').attr("id", newsBut);
+        },
+        error      : function() {
+            console.error("error");
+            alert('Unable to connect to server, please try again...');                  
+        }
+    }); 
 });
 
 $(document).on("pageshow", "#logout", function(){
@@ -268,6 +369,8 @@ $(document).on("pageshow", "#forgot", function(){
 
 $(document).on("pageshow", "#signup", function(){ 
     
+    deviceOSVersion = getAndroidVersion();
+    
     if (deviceOSVersion === '4.4.2') {
         $('#getPicture').hide();
     }
@@ -294,6 +397,7 @@ $(document).on("pageshow", "#signup", function(){
         formData.append('user_repassword', $('#user_repassword').val());
         formData.append('user_number', $('#user_number').val());
         formData.append('user_country', $('#user_country').val());
+        formData.append('user_division', $('#user_division').val());
         formData.append('tipe', 'signup');
         
         $.ajax({

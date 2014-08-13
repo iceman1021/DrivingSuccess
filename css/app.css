@@ -10,6 +10,10 @@ and open the template in the editor.
 
 @import url(http://fonts.googleapis.com/css?family=Michroma);
 
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+    text-shadow: none;
+}
+
 body, button, .ui-btn {
     font-family: 'Michroma', Arial, Helvetica, sans-serif;
     font-size: 12px;
@@ -40,7 +44,7 @@ input, select, textarea {
     background-size: cover;
 }
 
-#rewards, #whatsnew, #ranking {
+#rewards, #whatsnew, #ranking, #jag-ranking, #land-ranking, #profile, #campaigns, #article {
     background: #fff url('../images/Dashboard-Background.png') 100% 100% no-repeat;
     background-size: cover;
 }
@@ -202,15 +206,109 @@ input, select, textarea {
 
 #newsTitle {
     height:60px; 
-    line-height: 60px; 
     text-transform: uppercase;
     font-size: 10px;
     font-weight: normal;
     text-shadow: none;
+    word-wrap: normal;
+    white-space: normal;
+    vertical-align: middle;
+    display: table-cell;
 }
 
 #newsContent {
     background-color: transparent;
     border-color: #D32424;
     color: #d32424;
+}
+
+#jag-but-act, #land-but-act {
+    background-color: #d32627;
+    color: #fff;
+    border: none;
+    width: 100%;
+    display: block;
+    height: 55px;
+    line-height: 55px;
+    font-weight: bold;
+    cursor:pointer;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: none;
+    font-size: 10px;
+}
+
+#jag-but, #land-but {
+    background-color: #fff;
+    color: #d32627;
+    border: none;
+    width: 100%;
+    display: block;
+    height: 55px;
+    line-height: 55px;
+    font-weight: bold;
+    cursor:pointer;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: none;
+    font-size: 10px;
+}
+
+#back-but, #pre-but, #next-but {
+    background-color: #fff;
+    color: #d32627;
+    border-bottom: 1px solid #d32627;
+    width: 100%;
+    display: block;
+    height: 55px;
+    line-height: 55px;
+    font-weight: bold;
+    cursor:pointer;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: none;
+    font-size: 10px;
+}
+
+#back-but, #pre-but {
+    border-right: 1px solid #d32627;
+}
+
+#profile {
+    color: #d32627;
+}
+
+#profileOutput {
+    font-size: 10px;
+}
+
+#name-title {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+#points-title {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#profile-content {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 5px 0;
+    white-space: pre-wrap;       /* css-3 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    word-break: break-all;
+    white-space: normal;
+}
+
+#article {
+    color: #d32627;
+}
+
+#articleOutput {
+    font-size: 10px;
 }
