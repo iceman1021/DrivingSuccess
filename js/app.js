@@ -189,11 +189,25 @@ $(document).on("pageshow", "#profile", function(){
 });
 
 $(document).on("pageshow", "#whatsnew", function(){ 
-    loadNews(1);
+    loadNews(1);    
+    $( "#newsCollaps" ).collapsible({
+        expand: function() {
+            $("#newsTitle").css({
+                "color": "#d32627",
+                "font-size": "14px"
+            });
+        }
+    });
 });
 
 $(document).on("pageshow", "#campaigns", function(){ 
     loadNews(2);
+    $( "#newsCollaps" ).on( "collapsibleexpand", function( event, ui ) {
+        $("#newsTitle").css({
+                "color": "#d32627",
+                "font-size": "14px"
+            });
+    } );
 });
 
 $(document).on("pageshow", "#article", function() {
