@@ -204,18 +204,6 @@ input, select, textarea {
     border: 2px solid #424143;
 }
 
-#newsTitle {
-    height:60px; 
-    text-transform: uppercase;
-    font-size: 10px;
-    font-weight: normal;
-    text-shadow: none;
-    word-wrap: normal;
-    white-space: normal;
-    vertical-align: middle;
-    display: table-cell;
-}
-
 #newsContent {
     background-color: transparent;
     border-color: #D32424;
@@ -311,4 +299,30 @@ input, select, textarea {
 
 #articleOutput {
     font-size: 10px;
+}
+
+.ui-collapsible-heading-collapsed > .ui-collapsible-heading-toggle #newsTitle {
+    height:60px; 
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: normal;
+    color: #333;
+    text-shadow: none;
+    word-wrap: normal;
+    white-space: normal;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.ui-collapsible-heading-toggle #newsTitle {
+    height:60px; 
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    color: #d32627;
+    text-shadow: none;
+    word-wrap: normal;
+    white-space: normal;
+    vertical-align: middle;
+    display: table-cell;
 }
