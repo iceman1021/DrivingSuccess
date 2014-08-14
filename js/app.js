@@ -2,7 +2,7 @@ $.support.cors = true;
 $.mobile.allowCrossDomainPages = true;
 
 var formurl = "http://www.myitmanager.co.za/dsCMS/mobile/submitions_api.php";
-var placeSearch, autocomplete, devicePlatform, loginName, loginSurname, loginUID, loginRemember, loginEmail, files, deviceOSVersion;
+var placeSearch, autocomplete, devicePlatform, loginName, loginSurname, loginUID, loginRemember, loginEmail, files, deviceOSVersion, imagefilename;
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -148,6 +148,58 @@ function loadProfile(id) {
             alert('Unable to connect to server, please try again...');                  
         }
     });
+}
+
+// A button will call this function
+// To select image from gallery
+// A button will call this function
+// To capture photo
+function capturePhoto() {
+    // Take picture using device camera and retrieve image as base64-encoded string
+    navigator.camera.getPicture(uploadPhoto, onFail, { 
+        quality: 50, destinationType: Camera.DestinationType.FILE_URI 
+    });
+}
+
+function uploadPhoto(imageURI) {
+    //If you wish to display image on your page in app
+    // Get image handle
+    var largeImage = document.getElementById('largeImage');
+
+    // Unhide image elements
+    largeImage.style.display = 'block';
+
+    // Show the captured photo
+    // The inline CSS rules are used to resize the image
+    largeImage.src = imageURI;
+
+    var options = new FileUploadOptions();
+    options.fileKey = "file";
+    imagefilename = $('#user_name').val() + "_" + $('#user_name').val() + Number(new Date()) + ".jpg";
+    options.fileName = imagefilename;
+    options.mimeType = "image/jpg";
+
+    var params = new Object();
+    params.imageURI = imageURI;
+    params.tipe = "uploadImage";
+    options.params = params;
+    options.chunkedMode = false;
+    var ft = new FileTransfer();
+    var url = formurl;
+    ft.upload(imageURI, url, win, fail, options, true);
+}
+//Success callback
+function win(r) {
+    alert("Image uploaded successfully!!");
+}
+//Failure callback
+function fail(error) {
+    alert("There was an error uploading image");
+}
+// Called if something bad happens.
+// 
+function onFail(message) {
+    alert('Failed because: ' + message);
 }
 
 $(document).on("pageshow", "#dashboard", function(){ 
@@ -397,12 +449,7 @@ $(document).on("pageshow", "#signup", function(){
         
         event.preventDefault();
         var formData = new FormData();
-        if (typeof files === 'object') {
-            $.each(files, function(key, value)
-            {
-                formData.append(key, value);
-            });
-        }
+        
         formData.append('user_name', $('#user_name').val());
         formData.append('user_surname', $('#user_surname').val());
         formData.append('user_email', $('#user_email').val());
@@ -412,6 +459,7 @@ $(document).on("pageshow", "#signup", function(){
         formData.append('user_number', $('#user_number').val());
         formData.append('user_country', $('#user_country').val());
         formData.append('user_division', $('#user_division').val());
+        formData.append('user_image', imagefilename);
         formData.append('tipe', 'signup');
         
         $.ajax({
