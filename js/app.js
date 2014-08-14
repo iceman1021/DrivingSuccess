@@ -437,11 +437,11 @@ $(document).on("pageshow", "#signup", function(){
     
     deviceOSVersion = getAndroidVersion();
     
-    if (deviceOSVersion === '4.4.2') {
-        $('#getPicture').hide();
-    }
+    //if (deviceOSVersion === '4.4.2') {
+    //    $('#getPicture').hide();
+    //}
     
-    $('input[type=file]').on('change', prepareUpload);
+    //$('input[type=file]').on('change', prepareUpload);
     
     $('#signupbut').click(function()
     {
