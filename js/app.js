@@ -2,6 +2,7 @@ $.support.cors = true;
 $.mobile.allowCrossDomainPages = true;
 
 var formurl = "http://www.myitmanager.co.za/dsCMS/mobile/submitions_api.php";
+var uploadurl = "http://www.myitmanager.co.za/dsCMS/mobile/upload_api.php";
 var placeSearch, autocomplete, devicePlatform, loginName, loginSurname, loginUID, loginRemember, loginEmail, files, deviceOSVersion, imagefilename;
 
 document.addEventListener("deviceready", onDeviceReady, false);
@@ -162,9 +163,10 @@ function capturePhoto() {
 }
 
 function uploadPhoto(imageURI) {
+    $.mobile.loading('show');
     //If you wish to display image on your page in app
     // Get image handle
-    var largeImage = document.getElementById('largeImage');
+    var largeImage = $('#largeImage');
 
     // Unhide image elements
     largeImage.style.display = 'block';
@@ -181,19 +183,20 @@ function uploadPhoto(imageURI) {
 
     var params = new Object();
     params.imageURI = imageURI;
-    params.tipe = "uploadImage";
     options.params = params;
     options.chunkedMode = false;
     var ft = new FileTransfer();
-    var url = formurl;
+    var url = uploadurl;
     ft.upload(imageURI, url, win, fail, options, true);
 }
 //Success callback
 function win(r) {
+    $.mobile.loading('hide');
     alert("Image uploaded successfully!!");
 }
 //Failure callback
 function fail(error) {
+    $.mobile.loading('hide');
     alert("There was an error uploading image");
 }
 // Called if something bad happens.
