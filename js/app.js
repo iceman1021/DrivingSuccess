@@ -162,13 +162,12 @@ function capturePhoto() {
         encodingType: Camera.EncodingType.JPEG,
         targetWidth: 400,
         targetHeight: 400,
-        popoverOptions: CameraPopoverOptions,
+        correctOrientation: true,
         saveToPhotoAlbum: false
     });
 }
 
 function uploadPhoto(imageURI) {
-    $.mobile.loading('show');
     //If you wish to display image on your page in app
     // Get image handle
     var largeImage = $('#largeImage');
@@ -197,12 +196,10 @@ function uploadPhoto(imageURI) {
 }
 //Success callback
 function win(r) {
-    $.mobile.loading('hide');
     alert("Image uploaded successfully!!");
 }
 //Failure callback
 function fail(error) {
-    $.mobile.loading('hide');
     alert("There was an error uploading image");
 }
 // Called if something bad happens.
