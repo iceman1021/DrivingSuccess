@@ -151,14 +151,19 @@ function loadProfile(id) {
     });
 }
 
-// A button will call this function
-// To select image from gallery
-// A button will call this function
-// To capture photo
+//-- Take Photo functions --//
 function capturePhoto() {
     // Take picture using device camera and retrieve image as base64-encoded string
     navigator.camera.getPicture(uploadPhoto, onFail, { 
-        quality: 50, destinationType: Camera.DestinationType.FILE_URI 
+        quality: 50, 
+        destinationType: Camera.DestinationType.FILE_URI,
+        sourceType : Camera.PictureSourceType.CAMERA,
+        allowEdit : true,
+        encodingType: Camera.EncodingType.JPEG,
+        targetWidth: 400,
+        targetHeight: 400,
+        popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: false
     });
 }
 
@@ -204,6 +209,8 @@ function fail(error) {
 function onFail(message) {
     alert('Failed because: ' + message);
 }
+//-- END: Take Photo functions --//
+
 
 $(document).on("pageshow", "#dashboard", function(){ 
     loginName = localStorage.getItem('log_name');
