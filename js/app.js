@@ -188,10 +188,11 @@ function uploadPhoto(imageURI) {
 
     var params = new Object();
     params.imageURI = imageURI;
+    params.tipe = "uploadImage";
     options.params = params;
     options.chunkedMode = false;
     var ft = new FileTransfer();
-    var url = uploadurl;
+    var url = formurl;
     ft.upload(imageURI, url, win, fail, options, true);
 }
 //Success callback
