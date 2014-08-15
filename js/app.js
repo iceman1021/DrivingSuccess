@@ -2,7 +2,6 @@ $.support.cors = true;
 $.mobile.allowCrossDomainPages = true;
 
 var formurl = "http://www.myitmanager.co.za/dsCMS/mobile/submitions_api.php";
-var uploadurl = "http://www.myitmanager.co.za/dsCMS/mobile/upload_api.php";
 var placeSearch, autocomplete, devicePlatform, loginName, loginSurname, loginUID, loginRemember, loginEmail, files, deviceOSVersion, imagefilename;
 
 document.addEventListener("deviceready", onDeviceReady, false);
@@ -151,26 +150,25 @@ function loadProfile(id) {
     });
 }
 
-//-- Take Photo functions --//
+// A button will call this function
+// To select image from gallery
+// A button will call this function
+// To capture photo
 function capturePhoto() {
     // Take picture using device camera and retrieve image as base64-encoded string
     navigator.camera.getPicture(uploadPhoto, onFail, { 
         quality: 50, 
         destinationType: Camera.DestinationType.FILE_URI,
-        sourceType : Camera.PictureSourceType.CAMERA,
-        allowEdit : true,
-        encodingType: Camera.EncodingType.JPEG,
         targetWidth: 400,
         targetHeight: 400,
-        correctOrientation: true,
-        saveToPhotoAlbum: false
+        correctOrientation: true
     });
 }
 
 function uploadPhoto(imageURI) {
     //If you wish to display image on your page in app
     // Get image handle
-    var largeImage = $('#largeImage');
+    var largeImage = document.getElementById('largeImage');
 
     // Unhide image elements
     largeImage.style.display = 'block';
@@ -207,8 +205,6 @@ function fail(error) {
 function onFail(message) {
     alert('Failed because: ' + message);
 }
-//-- END: Take Photo functions --//
-
 
 $(document).on("pageshow", "#dashboard", function(){ 
     loginName = localStorage.getItem('log_name');
