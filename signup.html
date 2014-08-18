@@ -22,75 +22,24 @@
                     <input type="text" name="user_number" class="form-input" id="user_number" placeholder=" CONTACT NUMBER" value="" data-role="none">
                     <input type="password" name="user_password" class="form-input" id="user_password" placeholder=" PASSWORD" value="" data-role="none">
                     <input type="password" name="user_repassword" class="form-input" id="user_repassword" placeholder=" CONFIRM PASSWORD" value="" data-role="none">
-                    <select class="form-input" id="user_division" name="user_division" data-role="none">
-                        <option value="">Select Company</option>
-                        <option value="1">Jaguar</option>
-                        <option value="2">Land Rover</option>
-                        <option value="3">Both</option>
+                    <select class="form-input" id="user_dealership" name="user_dealership" onchange="setCountry();" data-role="none">
+                        <option value="">Select Dealership</option>
+                        <option value="UNIAO COMERCIAL">UNIAO COMERCIAL</option>
+                        <option value="ALLIANCE MOTORS">ALLIANCE MOTORS</option>
+                        <option value="ALLIANCE MOTORS GHANA">ALLIANCE MOTORS GHANA</option>
+                        <option value="RMA MOTORS (KENYA) LTD">RMA MOTORS (KENYA) LTD</option>
+                        <option value="AXESS LIMITED">AXESS LIMITED</option>
+                        <option value="COSCHARIS MOTORS">COSCHARIS MOTORS</option>
+                        <option value="CMC AUTOMOBILES">CMC AUTOMOBILES</option>
+                        <option value="PREMIER AUTO SERVICES">PREMIER AUTO SERVICES</option>
                     </select>
-                    <select class="form-input" id="user_country" name="user_country" data-role="none">
-                        <option value="">Select Country</option>
-                        <option value="Algeria">Algeria</option>
-                        <option value="Angola">Angola</option>
-                        <option value="Benin">Benin</option>
-                        <option value="Botswana">Botswana</option>
-                        <option value="Burkina Faso">Burkina Faso</option>
-                        <option value="Burundi">Burundi</option>
-                        <option value="Cameroon">Cameroon</option>
-                        <option value="Cape Verde">Cape Verde</option>
-                        <option value="Central African Republic">Central African Republic</option>
-                        <option value="Chad">Chad</option>
-                        <option value="Comoros">Comoros</option>
-                        <option value="Congo">Congo</option>
-                        <option value="Democratic Republic of The Congo">Democratic Republic of The Congo</option>
-                        <option value="Djibouti">Djibouti</option>
-                        <option value="Egypt">Egypt</option>
-                        <option value="Equatorial Guinea">Equatorial Guinea</option>
-                        <option value="Eritrea">Eritrea</option>
-                        <option value="Ethiopia">Ethiopia</option>
-                        <option value="Gabon">Gabon</option>
-                        <option value="The Gambia">The Gambia</option>
-                        <option value="Ghana">Ghana</option>
-                        <option value="Guinea">Guinea</option>
-                        <option value="Guinea-Bissau">Guinea-Bissau</option>
-                        <option value="Ivory Coast (Cote d'Ivoire)">Ivory Coast (Cote d'Ivoire)</option>
-                        <option value="Kenya">Kenya</option>
-                        <option value="Lesotho">Lesotho</option>
-                        <option value="Liberia">Liberia</option>
-                        <option value="Libya">Libya</option>
-                        <option value="Madagascar">Madagascar</option>
-                        <option value="Malawi">Malawi</option>
-                        <option value="Mali">Mali</option>
-                        <option value="Mauritania">Mauritania</option>
-                        <option value="Mauritius">Mauritius</option>
-                        <option value="Morocco">Morocco</option>
-                        <option value="Mozambique">Mozambique</option>
-                        <option value="Namibia">Namibia</option>
-                        <option value="Niger">Niger</option>
-                        <option value="Nigeria">Nigeria</option>
-                        <option value="Rwanda">Rwanda</option>
-                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
-                        <option value="Senegal">Senegal</option>
-                        <option value="Seychelles">Seychelles</option>
-                        <option value="Sierra Leone">Sierra Leone</option>
-                        <option value="Somalia">Somalia</option>
-                        <option value="South Africa">South Africa</option>
-                        <option value="South Sudan">South Sudan</option>
-                        <option value="Sudan">Sudan</option>
-                        <option value="Swaziland">Swaziland</option>
-                        <option value="Tanzania">Tanzania</option>
-                        <option value="Togo">Togo</option>
-                        <option value="Tunisia">Tunisia</option>
-                        <option value="Uganda">Uganda</option>
-                        <option value="Zambia">Zambia</option>
-                        <option value="Zimbabwe">Zimbabwe</option>
-                    </select>
+                    <input type="text" name="user_country" class="form-input" id="user_country" value="" data-role="none" placeholder=" COUNTRY" disabled>
                     <!--<div id="getPicture">
                         <p>Upload Profile Picture</p>
                         <input type="file" accept="image/*" capture="camera">
                     </div>-->
                 </form>
-                <a href="#" id="uploadImgbut" data-role="none" onclick="capturePhoto();">Take Photo</a>
+                <a href="#" id="uploadImgbut" data-role="none" onclick="getPhoto();">Upload Profile Picture</a>
                 <img style="display:none;" id="largeImage" src=""  class="resposive" />
                 <a href="#" id="signupbut" data-role="none">LET'S GO</a>
                 <div id="signupSuccess"></div>

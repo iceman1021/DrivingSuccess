@@ -39,7 +39,7 @@ input, select, textarea {
     font-size: 16px;
 }
 
-#forgot, #login, #signup, #dashboard, #logout {
+#forgot, #login, #signup, #dashboard, #logout, #updateProfile {
     background: #fff url('../images/background.png') 50% 50% no-repeat;
     background-size: cover;
 }
@@ -117,6 +117,10 @@ input, select, textarea {
     text-align: center; text-decoration: none; color: #333; text-shadow: none; font-family: Arial, Helvetica, sans-serif;
 }
 
+#updateA {
+    text-align: center; text-decoration: none; color: #333; text-shadow: none; font-family: Arial, Helvetica, sans-serif;
+}
+
 .resposive {
     width: 100%;
 }
@@ -132,7 +136,7 @@ input, select, textarea {
     height: 40px;
 }
 
-#my-but, #loginbut, #signupbut, #forgotbut {
+#my-but, #loginbut, #signupbut, #forgotbut, #updatebut {
     background-color: #d32627;
     color: #fff;
     border: none;
@@ -176,6 +180,17 @@ input, select, textarea {
     font-weight: normal;
     padding: 5px;
     cursor: pointer;
+}
+
+.my-update {
+    color: #ccc;
+    border: 1px solid #ccc;
+    height: 40px;
+    font-weight: normal;
+    padding: 5px;
+    cursor: pointer;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 #my-link {

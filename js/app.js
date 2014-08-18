@@ -120,6 +120,28 @@ function loadNews(div) {
     });
 }
 
+function setCountry() {
+    var dealer = $('#user_dealership').val();
+    
+    console.log("Dealer: "+dealer);
+    
+    $.ajax({
+        type        : "POST",
+        url         : formurl,
+        crossDomain : true,
+        data        : "tipe=getCountry&dealer="+ dealer,
+        dataType    : 'json',
+        success     : function(response){
+            console.log(response);
+            var country = response["country"];
+            $('#user_country').val(country);
+        },
+        error       : function(){
+            alert("failure");
+        }
+    });
+}
+
 function ChangeToProfile(url){
     $.mobile.changePage(url, {dataUrl: url, transition: "slide"});
 }
@@ -150,8 +172,59 @@ function loadProfile(id) {
     });
 }
 
+function getProfileDetails(uid) {
+    $.ajax({
+        type       : "POST",
+        url        : formurl,
+        crossDomain: true,
+        beforeSend : function() {$.mobile.loading('show')},
+        complete   : function() {$.mobile.loading('hide')},
+        data       : "tipe=userProfile&uid="+uid,
+        dataType   : 'json',
+        success    : function(response) {            
+            var user_name = response['user_name'];
+            var user_surname = response['user_surname'];
+            var user_email = response['user_email'];
+            var user_password = response['user_password'];
+            var user_dealership = response['user_dealership'];
+            var user_contact = response['user_contact'];
+            var user_country = response['user_country'];
+            var user_profile_pic = response['user_profile_pic'];
+            
+            if (user_dealership != 'null') {
+                $('#user_dealership').append('<option value="'+user_dealership+'" selected="selected">'+user_dealership+'</option>');
+            }
+            
+            $('#user_name').val(user_name);
+            $('#user_surname').val(user_surname);
+            $('#user_email').val(user_email);
+            $('#user_password').val(user_password);
+            $('#user_repassword').val(user_password);
+            $('#user_number').val(user_contact);
+            $('#user_country').val(user_country);
+            $('#largeImage').attr("src", "http://myitmanager.co.za/dsCMS/images/profiles/"+user_profile_pic);
+        },
+        error      : function() {
+            console.error("error");
+            alert('Unable to connect to server, please try again...');                  
+        }
+    });
+}
+
+//--START: Image Upload--//
 // A button will call this function
 // To select image from gallery
+function getPhoto() {
+    // Retrieve image file location from specified source
+    navigator.camera.getPicture(uploadPhoto, onFail, { 
+        quality: 50, 
+        destinationType: destinationType.FILE_URI,
+        sourceType: pictureSource.PHOTOLIBRARY,
+        targetWidth: 400,
+        targetHeight: 400,
+        correctOrientation: true
+    });
+}
 // A button will call this function
 // To capture photo
 function capturePhoto() {
@@ -205,6 +278,7 @@ function fail(error) {
 function onFail(message) {
     alert('Failed because: ' + message);
 }
+//--END: Image Upload--//
 
 $(document).on("pageshow", "#dashboard", function(){ 
     loginName = localStorage.getItem('log_name');
@@ -438,15 +512,7 @@ $(document).on("pageshow", "#forgot", function(){
 });
 
 $(document).on("pageshow", "#signup", function(){ 
-    
-    deviceOSVersion = getAndroidVersion();
-    
-    //if (deviceOSVersion === '4.4.2') {
-    //    $('#getPicture').hide();
-    //}
-    
-    //$('input[type=file]').on('change', prepareUpload);
-    
+        
     $('#signupbut').click(function()
     {
         loading = true;
@@ -461,6 +527,7 @@ $(document).on("pageshow", "#signup", function(){
         formData.append('user_password', $('#user_password').val());
         formData.append('user_repassword', $('#user_repassword').val());
         formData.append('user_number', $('#user_number').val());
+        formData.append('user_dealership', $('#user_dealership').val());
         formData.append('user_country', $('#user_country').val());
         formData.append('user_division', $('#user_division').val());
         formData.append('user_image', imagefilename);
@@ -487,7 +554,68 @@ $(document).on("pageshow", "#signup", function(){
                     $('#signupError').popup("open", {transition: "slidedown"});
                 } else {
                     $('#signupForm').empty();
+                    $('#uploadImgbut').css({"display":"none"});
+                    $('#largeImage').css({"display":"none"});
+                    $('#signupbut').css({"display":"none"});
                     $('#signupSuccess').append(resultHtml);
+                }
+            },
+            error      : function(xhr, textStatus, error){
+                console.log(xhr.statusText);
+                console.log(textStatus);
+                console.log(error);
+                alert('Unable to connect to server, please try again...');                  
+            }
+        });
+    });
+});
+
+$(document).on("pageshow", "#updateProfile", function(){ 
+
+    getProfileDetails(localStorage.log_uid);
+    
+    $('#updatebut').click(function()
+    {
+        loading = true;
+        
+        event.preventDefault();
+        var formData = new FormData();
+        
+        formData.append('user_email', $('#user_email').val());
+        formData.append('user_password', $('#user_password').val());
+        formData.append('user_repassword', $('#user_repassword').val());
+        formData.append('user_number', $('#user_number').val());
+        formData.append('user_country', $('#user_country').val());
+        formData.append('user_dealership', $('#user_dealership').val());
+        formData.append('user_image', imagefilename);
+        formData.append('uid', localStorage.log_uid);
+        formData.append('tipe', 'updateProfile');
+        
+        $.ajax({
+            type: "POST",
+            url        : formurl,
+            crossDomain: true,
+            beforeSend : function() {$.mobile.loading('show')},
+            complete   : function() {$.mobile.loading('hide')},
+            dataType: 'json',
+            processData: false,
+            contentType: false,
+            data: formData,
+            success    : function(response) {
+                
+                var resultHtml = response["html"];
+                var resultError = response["error"];
+                
+                if (resultError == '1') {
+                    $('#updateError').empty();
+                    $('#updateError').append(resultHtml);  
+                    $('#updateError').popup("open", {transition: "slidedown"});
+                } else {
+                    $('#updateForm').empty();
+                    $('#uploadImgbut').css({"display":"none"});
+                    $('#largeImage').css({"display":"none"});
+                    $('#updatebut').css({"display":"none"});
+                    $('#updateSuccess').append(resultHtml);
                 }
             },
             error      : function(xhr, textStatus, error){

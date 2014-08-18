@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+    <div data-role="page" id="updateProfile">
+        <div data-role="header" id="header">
+            <img src="images/logo.png" class="resposive">
+        </div><!-- /header -->
+        <div role="main" class="ui-content" id="content">
+            <div id="content-title">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a" id="content-head" style="width:65%"><h2>Update Profile</h2></div>
+                    <div class="ui-block-b" id="logoutDiv" style="width:35%"><a href="#popupMenu" data-rel="popup" data-transition="slideup" class="my-log" id="logoutA">Options</a></div>
+                </div>
+            </div>
+            <div id="content-body-main" style="padding: 30px">
+                <form method="POST" action="" id="updateForm" enctype="multipart/form-data">
+                    <input type="text" name="user_name" class="form-input" id="user_name" placeholder=" NAME" value="" data-role="none" disabled>
+                    <input type="text" name="user_surname" class="form-input" id="user_surname" placeholder=" SURNAME" value="" data-role="none" disabled>
+                    <input type="email" name="user_email" class="form-input" id="user_email" placeholder=" EMAIL ADDRESS" value="" data-role="none" disabled>
+                    <input type="text" name="user_number" class="form-input" id="user_number" placeholder=" CONTACT NUMBER" value="" data-role="none">
+                    <input type="password" name="user_password" class="form-input" id="user_password" placeholder=" PASSWORD" value="" data-role="none">
+                    <input type="password" name="user_repassword" class="form-input" id="user_repassword" placeholder=" CONFIRM PASSWORD" value="" data-role="none">
+                    <select class="form-input" id="user_dealership" name="user_dealership" onchange="setCountry();" data-role="none">
+                        <option value="">Select Dealership</option>
+                        <option value="UNIAO COMERCIAL">UNIAO COMERCIAL</option>
+                        <option value="ALLIANCE MOTORS">ALLIANCE MOTORS</option>
+                        <option value="ALLIANCE MOTORS GHANA">ALLIANCE MOTORS GHANA</option>
+                        <option value="RMA MOTORS (KENYA) LTD">RMA MOTORS (KENYA) LTD</option>
+                        <option value="AXESS LIMITED">AXESS LIMITED</option>
+                        <option value="COSCHARIS MOTORS">COSCHARIS MOTORS</option>
+                        <option value="CMC AUTOMOBILES">CMC AUTOMOBILES</option>
+                        <option value="PREMIER AUTO SERVICES">PREMIER AUTO SERVICES</option>
+                    </select>
+                    <input type="text" name="user_country" class="form-input" id="user_country" value="" data-role="none" placeholder=" COUNTRY" disabled>
+                    <!--<div id="getPicture">
+                        <p>Upload Profile Picture</p>
+                        <input type="file" accept="image/*" capture="camera">
+                    </div>-->
+                </form>
+                <a href="#" id="uploadImgbut" data-role="none" onclick="getPhoto();">Upload Profile Picture</a>
+                <img id="largeImage" src=""  class="resposive" />
+                <a href="#" id="updatebut" data-role="none">UPDATE PROFILE</a>
+                <div id="updateSuccess"></div>
+                <div data-role="popup" id="updateError" data-theme="a" data-overlay-theme="a" class="ui-content"></div>
+            </div>
+        </div><!-- /content -->
+        <div data-role="footer" id="footer" data-position="fixed">
+            <div class="ui-grid-d">
+                <div class="ui-block-a"><a href="dashboard.html"><img src="images/homeNavA.png" class="resposive"></a></div>
+                <div class="ui-block-b"><a href="rewards.html"><img src="images/rewardsNav.png" class="resposive"></a></div>
+                <div class="ui-block-c"><a href="ranking.html"><img src="images/rankingNav.png" class="resposive"></a></div>
+                <div class="ui-block-d"><a href="whatsnew.html"><img src="images/newNav.png" class="resposive"></a></div>
+                <div class="ui-block-e"><a href="#" onclick="loadURL('http://www.uefa.com/uefachampionsleague/season=2015/standings/index.html','_system');"><img src="images/uefaNav.png" class="resposive"></a></div>
+            </div>
+        </div><!-- /footer -->
+        <div data-role="popup" id="popupMenu">
+            <ul data-role="listview" data-inset="true" style="min-width:210px;">
+                <li><a href="update.html">Update Profile</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </div><!-- /popup -->
+    </div><!-- /page -->
+    </body>
+</html>
