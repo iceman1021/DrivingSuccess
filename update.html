@@ -38,7 +38,7 @@
                         <input type="file" accept="image/*" capture="camera">
                     </div>-->
                 </form>
-                <a href="#" id="uploadImgbut" data-role="none" onclick="getPhoto();">Upload Profile Picture</a>
+                <a href="#popupImgSelect" data-rel="popup" data-transition="slideup" id="uploadImgbut" data-role="none">Upload Profile Picture</a>
                 <img id="largeImage" src=""  class="resposive" />
                 <a href="#" id="updatebut" data-role="none">UPDATE PROFILE</a>
                 <div id="updateSuccess"></div>
@@ -58,6 +58,12 @@
             <ul data-role="listview" data-inset="true" style="min-width:210px;">
                 <li><a href="update.html">Update Profile</a></li>
                 <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </div>
+        <div data-role="popup" id="popupImgSelect">
+            <ul data-role="listview" data-inset="true" style="min-width:210px;">
+                <li><a href="#" onclick="getPhoto();">From Gallery</a></li>
+                <li><a href="#" onclick="capturePhoto();">From Camera</a></li>
             </ul>
         </div><!-- /popup -->
     </div><!-- /page -->

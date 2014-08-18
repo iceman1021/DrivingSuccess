@@ -39,7 +39,7 @@
                         <input type="file" accept="image/*" capture="camera">
                     </div>-->
                 </form>
-                <a href="#" id="uploadImgbut" data-role="none" onclick="capturePhoto();">Upload Profile Picture</a>
+                <a href="#popupImgSelect" data-rel="popup" data-transition="slideup" id="uploadImgbut" data-role="none">Upload Profile Picture</a>
                 <img style="display:none;" id="largeImage" src=""  class="resposive" />
                 <a href="#" id="signupbut" data-role="none">LET'S GO</a>
                 <div id="signupSuccess"></div>
@@ -49,6 +49,12 @@
         <div data-role="footer" id="footer-none">
             <img src="images/footer.png" class="resposive">
         </div><!-- /footer -->
+        <div data-role="popup" id="popupImgSelect">
+            <ul data-role="listview" data-inset="true" style="min-width:210px;">
+                <li><a href="#" onclick="getPhoto();">From Gallery</a></li>
+                <li><a href="#" onclick="capturePhoto();">From Camera</a></li>
+            </ul>
+        </div><!-- /popup -->
     </div><!-- /page -->
     </body>
 </html>
