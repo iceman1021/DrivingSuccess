@@ -219,10 +219,7 @@ function getPhoto() {
     navigator.camera.getPicture(uploadPhoto, onFail, { 
         quality: 50, 
         destinationType: destinationType.FILE_URI,
-        sourceType: pictureSource.PHOTOLIBRARY,
-        targetWidth: 400,
-        targetHeight: 400,
-        correctOrientation: true
+        sourceType: pictureSource.PHOTOLIBRARY
     });
 }
 // A button will call this function
