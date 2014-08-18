@@ -221,8 +221,8 @@ function getPhoto() {
     // Retrieve image file location from specified source
     navigator.camera.getPicture(uploadPhoto, onFail, { 
         quality: 50, 
-        destinationType: destinationType.FILE_URI,
-        sourceType: pictureSource.PHOTOLIBRARY
+        destinationType: navigator.camera.DestinationType.FILE_URI,
+        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
     });
 }
 // A button will call this function
