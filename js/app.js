@@ -2,7 +2,7 @@ $.support.cors = true;
 $.mobile.allowCrossDomainPages = true;
 
 var formurl = "http://www.myitmanager.co.za/dsCMS/mobile/submitions_api.php";
-var placeSearch, autocomplete, devicePlatform, loginName, loginSurname, loginUID, loginRemember, loginEmail, files, deviceOSVersion, imagefilename;
+var placeSearch, autocomplete, devicePlatform, loginName, loginSurname, loginUID, loginRemember, loginEmail, files, deviceOSVersion, imagefilename, pictureSource, destinationType;
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -16,6 +16,9 @@ function onDeviceReady() {
     });
     
     devicePlatform = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
+    
+    pictureSource=navigator.camera.PictureSourceType;
+    destinationType=navigator.camera.DestinationType;
 }
 
 function getAndroidVersion(ua) {
