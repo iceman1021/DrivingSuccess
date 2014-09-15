@@ -78,6 +78,34 @@ function loadPoints(uid) {
     });
 }
 
+function loadLandPoints(uid) {
+    $.ajax({
+        type       : "POST",
+        url        : formurl,
+        crossDomain: true,
+        beforeSend : function() {$.mobile.loading('show')},
+        complete   : function() {$.mobile.loading('hide')},
+        data       : "tipe=getLandPoints&uid="+uid,
+        dataType   : 'json',
+        success    : function(response) {
+            var gaugeImage = response["gaugeImage"];
+            var pointsPre = response["pointsPre"];
+            var pointsNow = response["pointsNow"];
+            
+            $('#gaugeImage').empty();
+            $('#gaugeImage').append(gaugeImage); 
+            $('#pointsPre').empty();
+            $('#pointsPre').append(pointsPre);
+            $('#pointsNow').empty();
+            $('#pointsNow').append(pointsNow);
+        },
+        error      : function() {
+            console.error("error");
+            alert('Unable to connect to server, please try again...');                  
+        }
+    });
+}
+
 function loadRankings(uid,div) {
     $.ajax({
         type       : "POST",
@@ -252,7 +280,7 @@ function uploadPhoto(imageURI) {
 
     var options = new FileUploadOptions();
     options.fileKey = "file";
-    imagefilename = $('#user_name').val() + "_" + $('#user_name').val() + Number(new Date()) + ".jpg";
+    imagefilename = $('#user_name').val() + "_" + $('#user_surname').val() + Number(new Date()) + ".jpg";
     options.fileName = imagefilename;
     options.mimeType = "image/jpg";
 
@@ -294,12 +322,72 @@ $(document).on("pageshow", "#rewards", function(){
     loadPoints(localStorage.getItem('log_uid'));
 });
 
+$(document).on("pageshow", "#landrewards", function(){ 
+    loadLandPoints(localStorage.getItem('log_uid'));
+});
+
 $(document).on("pageshow", "#jag-ranking", function(){     
     loadRankings(localStorage.getItem('log_uid'), 1);
 });
 
 $(document).on("pageshow", "#land-ranking", function(){ 
     loadRankings(localStorage.getItem('log_uid'), 2);
+});
+
+$(document).on("pageshow", "#uefa", function(){ 
+    $('#uefaContent').empty();
+    
+    $.ajax({
+        type       : "POST",
+        url        : formurl,
+        crossDomain: true,
+        beforeSend : function() {$.mobile.loading('show')},
+        complete   : function() {$.mobile.loading('hide')},
+        data       : "tipe=getUefa",
+        dataType   : 'json',
+        success    : function(response) {
+            var newsOut = response["news"];
+            $('#uefaContent').append(newsOut); 
+            
+            $("#uefaContent").find('a').each(function() {
+                var aUrl = $(this).attr('href');
+                $(this).attr('href', '#');
+                $(this).attr('onclick',"loadURL('"+aUrl+"','_system');");
+            });
+        },
+        error      : function() {
+            console.error("error");
+            alert('Unable to connect to server, please try again...');                  
+        }
+    });
+});
+
+$(document).on("pageshow", "#qualiRules", function(){ 
+    $('#ruleContent').empty();
+    
+    $.ajax({
+        type       : "POST",
+        url        : formurl,
+        crossDomain: true,
+        beforeSend : function() {$.mobile.loading('show')},
+        complete   : function() {$.mobile.loading('hide')},
+        data       : "tipe=getRules",
+        dataType   : 'json',
+        success    : function(response) {
+            var newsOut = response["news"];
+            $('#ruleContent').append(newsOut); 
+            
+            $("#ruleContent").find('a').each(function() {
+                var aUrl = $(this).attr('href');
+                $(this).attr('href', '#');
+                $(this).attr('onclick',"loadURL('"+aUrl+"','_system');");
+            });
+        },
+        error      : function() {
+            console.error("error");
+            alert('Unable to connect to server, please try again...');                  
+        }
+    });
 });
 
 $(document).on("pageshow", "#profile", function(){ 
@@ -375,6 +463,12 @@ $(document).on("pageshow", "#article", function() {
             $('#next-but').attr("href", next);
             $('#jag-but').attr("id", campBut);
             $('#land-but').attr("id", newsBut);
+            
+            $("#articleOutput").find('a').each(function() {
+                var aUrl = $(this).attr('href');
+                $(this).attr('href', '#');
+                $(this).attr('onclick',"loadURL('"+aUrl+"','_system');");
+            });
         },
         error      : function() {
             console.error("error");

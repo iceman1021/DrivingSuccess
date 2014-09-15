@@ -44,7 +44,7 @@ input, select, textarea {
     background-size: cover;
 }
 
-#rewards, #whatsnew, #ranking, #jag-ranking, #land-ranking, #profile, #campaigns, #article {
+#rewards, #landrewards, #whatsnew, #ranking, #jag-ranking, #land-ranking, #profile, #campaigns, #article, #uefa, #qualiRules {
     background: #fff url('../images/Dashboard-Background.png') 100% 100% no-repeat;
     background-size: cover;
 }
@@ -345,6 +345,7 @@ input, select, textarea {
     white-space: normal;
     vertical-align: middle;
     display: table-cell;
+    padding-left: 5px;
 }
 
 .ui-collapsible-heading-toggle #newsTitle {
@@ -358,4 +359,5 @@ input, select, textarea {
     white-space: normal;
     vertical-align: middle;
     display: table-cell;
+    padding-left: 5px;
 }
