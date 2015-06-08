@@ -2,6 +2,7 @@ $.support.cors = true;
 $.mobile.allowCrossDomainPages = true;
 
 var formurl = "http://www.myitmanager.co.za/dsCMS/mobile/submitions_api.php";
+//var formurl = "http://127.0.0.1/dsCMS/mobile/submitions_api.php";
 var placeSearch, autocomplete, devicePlatform, loginName, loginSurname, loginUID, loginRemember, loginEmail, files, deviceOSVersion, imagefilename, pictureSource, destinationType;
 
 document.addEventListener("deviceready", onDeviceReady, false);
