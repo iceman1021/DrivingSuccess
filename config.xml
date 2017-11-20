@@ -2,8 +2,8 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.drivingSuccess"
-        versionCode = "103" 
-        version   = "1.0.3">
+        versionCode = "104" 
+        version   = "1.0.4">
 
     <name>Driving Success</name>
 
@@ -16,6 +16,7 @@
     </author>
 
     <platform name="ios" >
+        <preference name='phonegap-version' value='cli-7.0.1' />
         <preference name="orientation" value="portrait" />
         <preference name="fullscreen" value="false" />  
         <preference name="target-device" value="universal" />
@@ -37,6 +38,7 @@
     </platform>
 
     <platform name="android" >
+        <preference name='phonegap-version' value='cli-7.0.1' />
         <preference name="orientation" value="portrait" />
         <preference name="fullscreen" value="false" />  
         <icon src="res/icon/android/icon-36-ldpi.png" qualifier="ldpi" />
@@ -56,9 +58,9 @@
         <gap:plugin name="com.phonegap.plugins.barcodescanner" />
     -->
     <plugin name="cordova-plugin-camera">
-        <param name="CAMERA_USAGE_DESCRIPTION" value="We are using the Camera for uploading your profile image." />
-        <param name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="We are using the Photo Library for uploading your profile image." />
-    </plugin>
+        <param name="CAMERA_USAGE_DESCRIPTION" value="We are using the Camera for something uploading your profile image." />
+        <param name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="We are using the Photo Library for selecting your profile image." />
+     </plugin>
     <plugin name="cordova-plugin-device-orientation" />
     <plugin name="cordova-plugin-geolocation" />
     <plugin name="cordova-plugin-whitelist" />
