@@ -2,8 +2,8 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.drivingSuccess"
-        versionCode = "102" 
-        version   = "1.0.2">
+        versionCode = "103" 
+        version   = "1.0.3">
 
     <name>Driving Success</name>
 
@@ -56,12 +56,19 @@
         <gap:plugin name="com.phonegap.plugins.barcodescanner" />
     -->
     <plugin name="cordova-plugin-camera">
-        <param name="CAMERA_USAGE_DESCRIPTION" value="We are using the Camera for uploading your till slip." />
-        <param name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="We are using the Photo Library for uploading your till slip." />
+        <param name="CAMERA_USAGE_DESCRIPTION" value="We are using the Camera for uploading your profile image." />
+        <param name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="We are using the Photo Library for uploading your profile image." />
     </plugin>
     <plugin name="cordova-plugin-device-orientation" />
     <plugin name="cordova-plugin-geolocation" />
     <plugin name="cordova-plugin-whitelist" />
+    
+    <edit-config target="NSPhotoLibraryUsageDescription" file="*-Info.plist" mode="overwrite">
+        <string>We are using the Photo Library for uploading your profile image.</string>
+    </edit-config>
+    <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="overwrite">
+        <string>We are using the Camera for uploading your profile image.</string>
+    </edit-config>
 
     <!-- Define app icon for each platform. -->
     <icon src="icon.png" />
